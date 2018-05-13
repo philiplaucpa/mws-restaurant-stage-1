@@ -10,12 +10,12 @@
   <title>Restaurant Info</title>
 </head>
 
-<body class="inside">
+<body class="inside" onload="FocusOnLoad()">
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
     <nav class="col-12">
-      <h1><a href="/">Restaurant Reviews</a></h1>
+      <h1 style="color:white">Restaurant Reviews</h1>
     </nav>
     <!-- End nav -->
   </header>
@@ -28,7 +28,7 @@
   <main id="maincontent" class="col-6">
     <!-- Beginning breadcrumb -->
     <ul id="breadcrumb" >
-      <li><a href="/">Home</a></li>
+      <li><a id="HomePage" href="/">Home</a></li>
     </ul>
     <!-- Beginning map -->
 
@@ -65,6 +65,12 @@
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjRRKAjImtklgibYqd4Nrvy0MYGo-RC7o&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
+
+    <script>
+    function FocusOnLoad() {
+      document.getElementById("HomePage").focus();
+    }
+  </script>
 
 </body>
 
