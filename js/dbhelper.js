@@ -87,15 +87,17 @@ class DBHelper {
    */
   static fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, callback) {
     // Fetch all restaurants
+    console.log("Cuisines is ", cuisine);
+    console.log("nighborhood is ", neighborhood);
     DBHelper.fetchRestaurants((error, restaurants) => {
       if (error) {
         callback(error, null);
       } else {
         let results = restaurants
-        if (cuisine != 'all') { // filter by cuisine
+        if (cuisine != 'All Cuisines') { // filter by cuisine
           results = results.filter(r => r.cuisine_type == cuisine);
         }
-        if (neighborhood != 'all') { // filter by neighborhood
+        if (neighborhood != 'All Neighborhoods') { // filter by neighborhood
           results = results.filter(r => r.neighborhood == neighborhood);
         }
         callback(null, results);

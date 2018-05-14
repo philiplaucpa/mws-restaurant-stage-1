@@ -30,13 +30,13 @@ fetchNeighborhoods = () => {
  * Set neighborhoods HTML.
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
-  const select = document.getElementById('neighborhoods-select');
+/*  const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
     select.append(option);
-  });
+  });*/
 
   const listelement = document.getElementById('exp_elem_list');
   neighborhoods.forEach(neighborhood => {
@@ -66,13 +66,23 @@ fetchCuisines = () => {
  * Set cuisines HTML.
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
-  const select = document.getElementById('cuisines-select');
+/*  const select = document.getElementById('cuisines-select');
 
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
     option.value = cuisine;
     select.append(option);
+  });*/
+
+   const listelement = document.getElementById('exp_elem_list2');
+
+  cuisines.forEach(cuisine => {
+    const option = document.createElement('li');
+    option.setAttribute("id", "exp_elem2_" + cuisine);
+    option.setAttribute("role", "option");
+    option.innerHTML = cuisine;
+    listelement.append(option);
   });
 }
 
@@ -89,21 +99,51 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
-  updateRestaurants();
+
+  self.currCenter = self.map.getCenter();
+
+  updateRestaurants2();
 }
 
 /**
  * Update page and map for current restaurants.
  */
 updateRestaurants = () => {
-  const cSelect = document.getElementById('cuisines-select');
+/*  const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
 
   const cIndex = cSelect.selectedIndex;
   const nIndex = nSelect.selectedIndex;
-
   const cuisine = cSelect[cIndex].value;
-  const neighborhood = nSelect[nIndex].value;
+  const neighborhood = nSelect[nIndex].value;*/
+
+  const listelement = document.getElementById('exp_elem_list');
+  const neighborhood = listelement.innerText;
+  const listelement2 = document.getElementById('exp_elem_list2');
+  const cuisine = listelement2.innerText;
+
+
+  DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
+    if (error) { // Got an error!
+      console.error(error);
+    } else {
+      resetRestaurants(restaurants);
+      fillRestaurantsHTML();
+    }
+  })
+}
+
+updateRestaurants2 = () => {
+  const cSelect = document.getElementById('exp_button2');
+  const nSelect = document.getElementById('exp_button');
+
+  //const cIndex = cSelect.selectedIndex;
+  //const nIndex = nSelect.selectedIndex;
+
+  //console.log("text is", nSelect.innerText);
+
+  const cuisine = cSelect.innerText;
+  const neighborhood = nSelect.innerText;
 
   DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
     if (error) { // Got an error!
