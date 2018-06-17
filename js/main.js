@@ -100,6 +100,11 @@ window.initMap = () => {
     scrollwheel: false
   });
 
+  listener = self.map.addListener('tilesloaded', () => (
+  document.getElementById('map').find('a').attr('tabindex', -1)));
+
+  google.maps.event.removeListener(listener);
+
   self.currCenter = self.map.getCenter();
 
   updateRestaurants2();
@@ -209,6 +214,7 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute("aria-label", restaurant.name + " " + restaurant.neighborhood + " " + restaurant.address);
   li.append(more)
 
   return li

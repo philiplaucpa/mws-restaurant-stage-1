@@ -6,7 +6,7 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
   <link rel="stylesheet" href="css/styles.css" type="text/css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Restaurant Info</title>
 </head>
 
@@ -14,19 +14,17 @@
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
-    <nav class="col-12">
+    <nav>
       <h1 style="color:white">Restaurant Reviews</h1>
     </nav>
     <!-- End nav -->
   </header>
   <!-- End header -->
-  <div class="row">
-  <section id="map-container" class="col-6">
-      <div id="map"></div>
-  </section>
+  <div>
   <!-- Beginning main -->
-  <main id="maincontent" class="col-6">
+  <main id="maincontent">
     <!-- Beginning breadcrumb -->
+
     <ul id="breadcrumb" >
       <li><a id="HomePage" href="/">Home</a></li>
     </ul>
@@ -34,27 +32,39 @@
 
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
-      <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <table id="restaurant-hours"></table>
+    <section id="restaurant-container" tabindex="0">
+      <h1 id="restaurant-name" tabindex="0"></h1>
+      <img id="restaurant-img" tabindex="0">
+      <p id="restaurant-cuisine" tabindex="0"></p>
+      <p id="restaurant-address" tabindex="0"></p>
+      <table id="restaurant-hours" tabindex="0"></table>
     </section>
     <!-- end restaurant -->
+    <!--map-->
+    <div class="some-pannel">
+    <div id="map-container">
+      <div id="map2" style="width:100%;height:100%;"></div>
+    </div>
+    </div>
     <!-- Beginning reviews -->
     <section id="reviews-container">
       <ul id="reviews-list"></ul>
     </section>
+    </div>
     <!-- End reviews -->
+
+
   </main>
   <!-- End main -->
-  </div>
+  
 
   <!-- Beginning footer -->
-  <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+
+  <div>
+  <footer id="footer" tabindex="0">
+    Copyright (c) 2017 <strong>Restaurant Reviews</strong> All Rights Reserved.
   </footer>
+  </div>
   <!-- End footer -->
 
   <!-- Beginning scripts -->

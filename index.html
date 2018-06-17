@@ -11,16 +11,15 @@
 <body onload="FocusOnLoad()">
   <header>
     <nav>
-      <h1 style="color:white">Restaurant Reviews</h1>
+      <h1 style="color:white" tabindex=-1>Restaurant Reviews</h1>
     </nav>
   </header>
 
   <main id="maincontent">
-    <section id="map-container" class="col-12">
-      <div role="map" id="map"></div>
+    <section id="map-container" tabindex=-1>
+      <div role="map" id="map" tabindex=-1></div>
     </section>
     <section>
-      <div class="filter-options">
   <div class="listbox-area">
     <div class="left-area">
       <span id="exp_elem">
@@ -64,7 +63,6 @@
         </ul>
       </div>
   </div>
-  </div>
 
 <!--       <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
@@ -81,11 +79,15 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/utils.js"></script>
+  <script type="application/javascript" charset="utf-8" src="serviceworker.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjRRKAjImtklgibYqd4Nrvy0MYGo-RC7o&libraries=places&callback=initMap"></script>
-
   <script>
+
     function FocusOnLoad() {
       document.getElementById("exp_button").focus();
+
+      var mapelement = document.getElementById("map");
+      mapelement.addEventListener('focus', function(ev){this.style.outline = "2px solid #4D8FFD"});
     }
     /**
  * ARIA Collapsible Dropdown Listbox Example
@@ -164,6 +166,20 @@ aria.ListboxButton.prototype.onFocusChange = function (focusedItem) {
   this.button.innerText = focusedItem.innerText;
   updateRestaurants2();
 };
+
+function dummyfunction(){
+    console.log("Testing");
+
+     if(!navigator.serviceWorker) 
+      return;
+    navigator.serviceWorker.register('serviceWorker.js').then(function() {
+      console.log('Registration worked!');
+    }).catch(function() {
+      console.log('Registration failed');
+    });
+}
+
+dummyfunction();
   </script>
 
   <footer id="footer">
